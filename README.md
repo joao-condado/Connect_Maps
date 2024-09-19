@@ -1,2 +1,5 @@
 # Connect_Maps
-Viva João Batista Condado de Carvalho
+João Batista Condado de Carvalho
+João Gabriel Barbosa Camilo
+Gabriel Henrique de Oliveira
+Gian Paulo Marques de Lima
