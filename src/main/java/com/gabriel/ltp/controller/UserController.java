@@ -6,7 +6,7 @@ public class UserController{
 
     @GetMapping("/user-JoaoBCamilo")
     public String getMethodName(){
-        return "hello";
+        return "fala galera...";
 
     }
 
