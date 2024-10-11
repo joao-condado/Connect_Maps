@@ -1,0 +1,46 @@
+package com.gabriel.ltp.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.gabriel.ltp.model.Agente;
+
+public class AgenteController {
+    
+    @GetMapping("/agente/{numIdent}")
+    public String endPoint2(@PathVariable("numIdent") Long valor){
+        return "Parâmetros recebido: " + valor;
+    }
+
+
+    @PutMapping("/agente/atualizar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Agente AttUser(@RequestBody Agente agenteAtualizado){
+        return agenteAtualizado;
+    }
+
+    @DeleteMapping("/agente/apagar/{numIdent}")
+    public String endPoint5(@PathVariable("numIdent") int numIdent){
+        if(numIdent == 1)
+            return "Remoção de informação com id " + numIdent + "realizada";
+        else{
+            return "Objeto para id " + numIdent + "não encontrado";
+        }
+    }
+
+    @PostMapping("/agente/criarUsuarioAgente")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Agente endPoint3(@RequestBody Agente AgenteNovo){
+        return AgenteNovo;
+    }
+
+
+
+
+}
