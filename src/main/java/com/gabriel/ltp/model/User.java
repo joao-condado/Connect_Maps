@@ -1,24 +1,62 @@
 package com.gabriel.ltp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+
+@Entity
 public class User{
 
-    private String login;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String nome;
+    private String email;
+    private String senha;
+    
     public User(){
 
     }
 
-    public User (String login){
-        this.login = login;
+    public String getNome() {
+        return nome;
     }
 
-    public String getLogin() {
-        return login;
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+
+
+    public String getEmail() {
+        return email;
     }
+
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+
+    public String getSenha() {
+        return senha;
+    }
+
+
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+
 
     
+
+   
 }
