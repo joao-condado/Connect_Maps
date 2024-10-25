@@ -19,19 +19,19 @@ import com.gabriel.ltp.model.Agente;
 @RequestMapping("/agente")
 public class AgenteController {
     
-    @GetMapping("/agente/{numIdent}")
+    @GetMapping("/{numIdent}")
     public String endPoint2(@PathVariable("numIdent") Long valor){
         return "Parâmetros recebido: " + valor;
     }
 
 
-    @PutMapping("/agente/atualizar")
+    @PutMapping("/atualizar")
     @ResponseStatus(HttpStatus.CREATED)
     public Agente AttUser(@RequestBody Agente agenteAtualizado){
         return agenteAtualizado;
     }
 
-    @DeleteMapping("/agente/apagar/{numIdent}")
+    @DeleteMapping("/apagar/{numIdent}")
     public String endPoint5(@PathVariable("numIdent") int numIdent){
         if(numIdent == 1)
             return "Remoção de informação com id " + numIdent + "realizada";
