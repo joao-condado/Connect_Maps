@@ -43,7 +43,7 @@ public class AgenteController {
     @PostMapping("/criarUsuarioAgente")
     // @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> criarUsuarioAgente(@RequestBody Agente agente){
-        return ResponseEntity.ok("Agente criado com sucesso! Função: " + agente.getFuncao());
+        return ResponseEntity.ok("Agente criado com sucesso!\n\nNumero Identificador: " + agente.getNumIdent() + "\nFunção do Agente: " + agente.getFuncao() + "\nSenha do Agente: " + agente.getSenhaA());
     }
 
 
