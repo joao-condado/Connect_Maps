@@ -1,7 +1,5 @@
 package com.gabriel.ltp.model;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +35,7 @@ public class Denuncia{
 
     @ManyToOne
     @JoinColumn(name = "Id_Cidadao")
+    @JoinColumn(name = "Id_Agente")
     private Cidadao cidadao;
 
 
