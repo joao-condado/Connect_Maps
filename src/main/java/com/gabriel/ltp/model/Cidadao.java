@@ -23,7 +23,7 @@ public class Cidadao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id_Cidadao;
     
-     @Column(
+    @Column(
         unique = true,
         nullable = false,
         length = 40

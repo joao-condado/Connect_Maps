@@ -31,7 +31,8 @@ public class Denuncia{
         nullable = false,
         length = 40
     )
-    private int grauReRisco;
+    private int grauDeRisco;
+    
 
     @ManyToOne
     @JoinColumn(name = "Id_Cidadao")
