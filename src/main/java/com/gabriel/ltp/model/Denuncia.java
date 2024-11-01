@@ -35,6 +35,7 @@ public class Denuncia{
 
     @ManyToOne
     @JoinColumn(name = "Id_Cidadao")
+    @JoinColumn(name = "Id_Agente")
     private Cidadao cidadao;
 
 
