@@ -30,7 +30,7 @@ public class DenunciaController {
     private CidadaoRepository cidadaoRepository;
 
     @GetMapping("/{id}")
-    public Denuncia RetornarDenuncia(@PathVariable("numIdent") int valor){
+    public Denuncia RetornarDenuncia(@PathVariable("id") int valor){
         return denunciaRepository.findById(valor).get();
     }
 
