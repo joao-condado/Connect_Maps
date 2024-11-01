@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.gabriel.ltp.model.Cidadao;
 import com.gabriel.ltp.model.Denuncia;
+import com.gabriel.ltp.repository.CidadaoRepository;
 import com.gabriel.ltp.repository.DenunciaRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/denuncia")
@@ -22,6 +25,9 @@ public class DenunciaController {
 
     @Autowired
     DenunciaRepository denunciaRepository;
+
+    @Autowired
+    private CidadaoRepository cidadaoRepository;
 
     @GetMapping("/{id}")
     public Denuncia RetornarDenuncia(@PathVariable("numIdent") int valor){
@@ -38,6 +44,9 @@ public class DenunciaController {
     @PostMapping("/cadastrarDenuncia")
     // @ResponseStatus(HttpStatus.CREATED)
     public String cadastrarDenuncia(@RequestBody Denuncia denuncia){
+         Cidadao cidadao = cidadaoRepository.findById(denuncia.getCidadao().getId_Cidadao())
+            .orElseThrow(() -> new EntityNotFoundException("Cidadao não encontrado"));
+        denuncia.setCidadao(cidadao);
         denunciaRepository.save(denuncia);
         return "Cadastrado com sucesso";
         // return ResponseEntity.ok("Agente criado com sucesso!\n\nNumero Identificador: " + agente.getNumIdent() + "\nFunção do Agente: " + agente.getFuncao() + "\nSenha do Agente: " + agente.getSenhaA());
