@@ -1,5 +1,6 @@
 package com.gabriel.ltp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,39 +14,44 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gabriel.ltp.model.Cidadao;
+import com.gabriel.ltp.repository.CidadaoRepository;
+
+import lombok.val;
 
 @RestController
 @RequestMapping("/cidadao")
 public class CidadaoController {
     
+    @Autowired
+    CidadaoRepository cidadaoRepository;
 
     @GetMapping("/{id}")
-    public String endPoint2(@PathVariable("id") Long valor){
-        return "Parâmetros recebido: " + valor;
+    public Cidadao RetornarCidadao(@PathVariable("id") int valor){
+        return cidadaoRepository.findById(valor).get();
     }
 
 
     @PutMapping("/atualizar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cidadao AttUser(@RequestBody Cidadao cidadaoAtualizado){
+    public Cidadao AttCidadao(@RequestBody Cidadao cidadaoAtualizado){
+        cidadaoRepository.save(cidadaoAtualizado);
         return cidadaoAtualizado;
     }
 
 
     @DeleteMapping("/apagar/{id}")
-    public String endPoint5(@PathVariable("id") int id){
-        if(id == 1)
-            return "Remoção de informação com id " + id + "realizada";
-        else{
-            return "Objeto para id " + id + "não encontrado";
-        }
+    public String DelCidadao(@PathVariable("id") int id){
+        Cidadao cidadaoDel = RetornarCidadao(id);
+        cidadaoRepository.delete(cidadaoDel);
+        return "Apagado com sucesso";
     }
 
 
     @PostMapping("/criarUsuarioCidadao")
     // @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> criarUsuarioCidadao(@RequestBody Cidadao cidadaoNovo){
-        return ResponseEntity.ok("Cidadão cadastrado com sucesso!\n\nEmail: " + cidadaoNovo.getEmail() + "\nSenha: " + cidadaoNovo.getSenha());
+    public String criarUsuarioCidadao(@RequestBody Cidadao cidadaoNovo){
+        cidadaoRepository.save(cidadaoNovo);
+        return "Criado com sucesso";
     }
 
 }
