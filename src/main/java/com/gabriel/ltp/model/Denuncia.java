@@ -1,5 +1,7 @@
 package com.gabriel.ltp.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,10 +33,12 @@ public class Denuncia{
         nullable = false,
         length = 40
     )
-    private int grauReRisco;
+    private int grauDeRisco;
+    
 
     @ManyToOne
     @JoinColumn(name = "Id_Cidadao")
+    @JsonManagedReference
     private Cidadao cidadao;
 
 
