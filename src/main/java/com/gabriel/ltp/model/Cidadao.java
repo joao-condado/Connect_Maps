@@ -39,12 +39,4 @@ public class Cidadao {
     )
     private String senha;
 
-    @OneToMany(mappedBy = "cidadao")
-    @JsonBackReference
-    public List <Denuncia> denuncias;
-    
-
-    
-
-
 }
