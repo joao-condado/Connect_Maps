@@ -37,7 +37,7 @@ public class Denuncia{
     
 
     @ManyToOne
-    @JoinColumn(name = "Id_Cidadao")
+    @JoinColumn(name = "Id_Cidadao", nullable = false)
     @JsonManagedReference
     private Cidadao cidadao;
 
