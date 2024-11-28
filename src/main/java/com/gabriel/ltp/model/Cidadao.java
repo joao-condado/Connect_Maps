@@ -24,7 +24,13 @@ public class Cidadao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id_Cidadao;
-    
+
+    @Column(
+        nullable = false,
+        length = 50
+    )
+    private String nome;
+
     @Column(
         unique = true,
         nullable = false,
@@ -39,4 +45,10 @@ public class Cidadao {
     )
     private String senha;
 
+    @Column(
+        unique = true,
+        nullable = false,
+        length =  11
+    )
+    private String telefone;
 }

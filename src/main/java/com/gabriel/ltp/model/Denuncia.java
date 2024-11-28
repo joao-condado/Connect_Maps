@@ -33,7 +33,14 @@ public class Denuncia{
         nullable = false,
         length = 40
     )
+    
     private int grauDeRisco;
+
+    @Column(
+        nullable = false,
+        length = 20
+    )
+    private String categoria;
     
 
     @ManyToOne
