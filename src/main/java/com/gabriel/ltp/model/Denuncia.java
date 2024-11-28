@@ -1,5 +1,6 @@
 package com.gabriel.ltp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -45,7 +46,7 @@ public class Denuncia{
 
     @ManyToOne
     @JoinColumn(name = "Id_Cidadao", nullable = false)
-    @JsonManagedReference
+    @JsonBackReference
     private Cidadao cidadao;
 
 

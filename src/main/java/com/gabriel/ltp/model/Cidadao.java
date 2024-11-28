@@ -1,9 +1,13 @@
 
 package com.gabriel.ltp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.mapping.Set;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -51,4 +55,9 @@ public class Cidadao {
         length =  11
     )
     private String telefone;
+
+   @OneToMany(mappedBy = "cidadao")
+   @JsonManagedReference
+   private List<Denuncia> denuncias;
+
 }
