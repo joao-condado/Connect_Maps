@@ -1,5 +1,7 @@
 package com.gabriel.ltp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,13 @@ public class CidadaoController {
     public Cidadao RetornarCidadao(@PathVariable("id") int valor){
         return cidadaoRepository.findById(valor).get();
     }
+
+    @GetMapping("/todos")
+    public List<Cidadao> RetornarTodosCidadaos() {
+        return (List<Cidadao>) cidadaoRepository.findAll();
+    }
+
+
 
 
     @PutMapping("/atualizar")
