@@ -1,6 +1,5 @@
 package com.gabriel.ltp.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -35,7 +34,7 @@ public class Denuncia{
         length = 40
     )
     
-    private int grauDeRisco;
+    private String grauDeRisco;
 
     @Column(
         nullable = false,
@@ -44,10 +43,10 @@ public class Denuncia{
     private String categoria;
     
 
-    @ManyToOne
-    @JoinColumn(name = "Id_Cidadao", nullable = false)
-    @JsonBackReference
-    private Cidadao cidadao;
+    // @ManyToOne
+    // @JoinColumn(name = "Id_Cidadao", nullable = false)
+    // @JsonManagedReference
+    // private Cidadao cidadao;
 
 
 }

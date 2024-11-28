@@ -1,5 +1,7 @@
 package com.gabriel.ltp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,22 +36,50 @@ public class DenunciaController {
         return denunciaRepository.findById(valor).get();
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping("/atualizar/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Denuncia AttDenuncia(@RequestBody Denuncia denunciaAtualizada){
-        denunciaRepository.save(denunciaAtualizada);
-        return denunciaAtualizada;
+    public Denuncia AttDenuncia(@PathVariable("id") int id, @RequestBody Denuncia denunciaAtualizada){
+    // Busca a denúncia existente pelo ID
+        Denuncia denunciaExistente = denunciaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Denúncia não encontrada"));
+
+    // Atualiza apenas os campos que foram fornecidos na requisição
+        if (denunciaAtualizada.getDescricao() != null) {
+        denunciaExistente.setDescricao(denunciaAtualizada.getDescricao());
+        }
+        if (denunciaAtualizada.getGrauDeRisco() != null) {
+        denunciaExistente.setGrauDeRisco(denunciaAtualizada.getGrauDeRisco());
+        }
+        if (denunciaAtualizada.getCategoria() != null) {
+        denunciaExistente.setCategoria(denunciaAtualizada.getCategoria());
+        }
+
+    // Salva a denúncia com os dados atualizados
+        denunciaRepository.save(denunciaExistente);
+    
+        return denunciaExistente;
     }
+
 
     @PostMapping("/cadastrarDenuncia")
     // @ResponseStatus(HttpStatus.CREATED)
+    // public String cadastrarDenuncia(@RequestBody Denuncia denuncia){
+    //      Cidadao cidadao = cidadaoRepository.findById(denuncia.getCidadao().getId_Cidadao())
+    //         .orElseThrow(() -> new EntityNotFoundException("Cidadao não encontrado"));
+    //     denuncia.setCidadao(cidadao);
+    //     denunciaRepository.save(denuncia);
+    //     return "Cadastrado com sucesso";
+    //     // return ResponseEntity.ok("Agente criado com sucesso!\n\nNumero Identificador: " + agente.getNumIdent() + "\nFunção do Agente: " + agente.getFuncao() + "\nSenha do Agente: " + agente.getSenhaA());
+    // }
     public String cadastrarDenuncia(@RequestBody Denuncia denuncia){
-         Cidadao cidadao = cidadaoRepository.findById(denuncia.getCidadao().getId_Cidadao())
-            .orElseThrow(() -> new EntityNotFoundException("Cidadao não encontrado"));
-        denuncia.setCidadao(cidadao);
+        // Aqui, não estamos mais associando um cidadão à denúncia
         denunciaRepository.save(denuncia);
-        return "Cadastrado com sucesso";
-        // return ResponseEntity.ok("Agente criado com sucesso!\n\nNumero Identificador: " + agente.getNumIdent() + "\nFunção do Agente: " + agente.getFuncao() + "\nSenha do Agente: " + agente.getSenhaA());
+        return "Denúncia cadastrada com sucesso!";
+    }
+
+    @GetMapping("/todos")
+    public List<Denuncia> RetornarTodasDenuncias() {
+        return (List<Denuncia>) denunciaRepository.findAll();
     }
 
     @DeleteMapping("/apagar/{id}")

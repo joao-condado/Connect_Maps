@@ -56,8 +56,8 @@ public class Cidadao {
     )
     private String telefone;
 
-   @OneToMany(mappedBy = "cidadao")
-   @JsonManagedReference
-   private List<Denuncia> denuncias;
+//    @OneToMany(mappedBy = "cidadao")
+//    @JsonManagedReference
+//    private List<Denuncia> denuncias;
 
 }
